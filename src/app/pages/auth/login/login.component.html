@@ -1,0 +1,12 @@
+<main>
+    <div class="login-container">
+        
+        <form [formGroup]="form" (ngSubmit)="handleLogin()" novalidate  class="flex flex-col gap-7 justify-center items-center">
+            <h3>Peludos & Cia</h3>
+            <input type="text" pInputText formControlName="UserName" class="w-full" />
+            <p-password formControlName="Password" [feedback]="false" class="w-full"></p-password>
+            <p-button type="submit" label="Entrar"></p-button>
+        </form>
+    </div>
+
+</main>

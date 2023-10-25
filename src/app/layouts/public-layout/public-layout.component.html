@@ -1,0 +1,67 @@
+<div class="grid grid-cols-12 min-h-screen">
+  <div
+    class="xl:col-span-2 md:col-span-3 flex-col flex gap-[2rem] border border-r-black border-r-2"
+  >
+    <div class="logo">
+        <h3 class="flex flex-col justify-center items-center text-gray-900 text-[2rem]">
+            <span>Peludos</span>
+            <span><span class="text-purple-600">&</span>Cia</span>
+        </h3>
+    </div>
+    <div class=" p-[1rem]">
+      <a routerLink="/produtos"
+        class="w-full flex items-center hover:text-white ps-[1rem] gap-[1rem] white py-[1rem] hover:bg-purple-500 transition-all rounded cursor-pointer text-gray-400"
+      >
+        <i class="pi pi-inbox"></i>
+        Produtos
+      </a>
+      <a routerLink="/veiculos"
+        class="w-full flex items-center hover:text-white ps-[1rem] gap-[1rem] py-[1rem] hover:bg-purple-500 transition-all rounded cursor-pointer text-gray-400"
+      >
+        <i class="pi pi-car"></i>
+        Veiculos
+      </a>
+      <a routerLink="/transportadoras"
+        class="w-full flex items-center hover:text-white ps-[1rem] gap-[1rem] py-[1rem] hover:bg-purple-500 transition-all rounded cursor-pointer text-gray-400"
+      >
+        <i class="pi pi-truck"></i>
+        Transportadoras
+      </a>
+      <a routerLink="/clientes"
+        class="w-full flex items-center  hover:text-white ps-[1rem] gap-[1rem] py-[1rem] hover:bg-purple-500 transition-all rounded cursor-pointer text-gray-400"
+      >
+        <i class="pi pi-users"></i>
+        Clientes
+      </a>
+      <a routerLink="/requisicoes"
+        class="w-full flex items-center hover:text-white ps-[1rem] gap-[1rem] py-[1rem] hover:bg-purple-500 transition-all rounded cursor-pointer text-gray-400"
+      >
+        <i class="pi pi-book"></i>
+        Requisições
+      </a>
+    </div>
+    <div class="w-full border-b-2"></div>
+    <div class="text-gray-400 p-[1rem] flex flex-col gap-[1rem]">
+        <p>Preferencias</p>
+        <p
+        class="w-full flex items-center hover:text-white ps-[1rem] gap-[1rem] py-[1rem] hover:bg-gray-400 transition-all rounded cursor-pointer"
+      >
+        <i class="pi pi-spin pi-cog"  style="font-size: 2rem"></i>
+        Configurações
+      </p>
+
+      <p
+      class="w-full flex items-center hover:text-white ps-[1rem] gap-[1rem] py-[1rem] hover:bg-gray-400 transition-all rounded cursor-pointer"
+    >
+      <i class="pi pi-question-circle"  style="font-size: 2rem"></i>
+      FAQ
+    </p>
+    </div>
+  </div>
+  <div class="xl:col-span-10 md:col-span-9 ">
+    <div class="p-[1rem]">
+        <router-outlet></router-outlet>
+    </div>
+   
+  </div>
+</div>

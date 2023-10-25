@@ -1,2 +1,18 @@
-<p>home works!</p>
-dadsadasd
+
+<form [formGroup]="form" (ngSubmit)="handleSubmit()" class="flex flex-col" enctype="multipart/form-data">
+
+
+    <input type="file" formArrayName="uploadFile" name="" id="" (change)="arquivoSelecionado($event)" accept="image/*">
+    <button type="submit" [ngStyle]="getStyle()" style="width: 300px; height: 100px; background: gray; border-radius: 10px;">Enviar</button>
+</form>
+
+<div class="">{{imageSrc}}</div>
+
+
+<button (click)="callSubscribe()">
+    callar
+</button>
+
+    <img [src]="imageSrc" alt="">
+    <div class="">Bom dia kevin</div>
+

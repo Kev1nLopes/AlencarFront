@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 export class LoginComponent {
 
   public form: FormGroup;
+  public loading = false;
 
   constructor(private fb: FormBuilder){
     this.form = this.initForm();
@@ -16,7 +17,16 @@ export class LoginComponent {
 
 
 
-  public handleLogin(){
+  public async handleLogin(){
+
+    this.loading = true;
+
+    setTimeout(()=>{
+      this.loading = false;
+    }, 3000)
+    
+
+
 
     console.log(this.form.getRawValue());
   }
@@ -28,5 +38,8 @@ export class LoginComponent {
       Password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]]
     })
   }
+
+
+  
 
 }

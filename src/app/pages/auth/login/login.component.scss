@@ -27,7 +27,20 @@
                     width: 100%;
                 }
             }
-
+            .btn-login{
+                width: 100%;
+                ::ng-deep button{
+                    width: 100%;
+                    background-color: transparent;
+                    border: 2px solid black;
+                    color: black;
+                    &:hover{
+                        background-color: rgb(65, 126, 218);
+                        transition: background-color 0.5s ease-in-out;
+                        color: white;
+                    }
+                }
+            }
         }
     }
 }

@@ -5,7 +5,11 @@ import { LoginModule } from './pages/auth/login/login.module';
 export const AppRoutes : Routes = [
     {
         path: '',
-        loadChildren: () => import('./pages/home/home.module').then(x => x.HomeModule),
+        loadChildren: () => import('./layouts/public-layout/public-layout.module').then(x => x.PublicLayoutModule),
+    },
+    {
+        path: 'auth',
+        loadChildren: () => import('./layouts/private-layout/private-layout.module').then(x => x.PrivateLayoutModule),
         canActivate: [authGuard]
     },
     {

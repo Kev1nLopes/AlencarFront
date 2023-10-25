@@ -5,7 +5,7 @@
             <h3>Peludos & Cia</h3>
             <input type="text" pInputText formControlName="UserName" class="w-full" />
             <p-password formControlName="Password" [feedback]="false" class="w-full"></p-password>
-            <p-button type="submit" label="Entrar"></p-button>
+            <p-button label="Entrar" class="btn-login" [loading]="loading" (onClick)="handleLogin()"></p-button>
         </form>
     </div>
 

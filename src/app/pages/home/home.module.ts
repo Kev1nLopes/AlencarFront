@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeRoutes } from './home.routes';
 import { HomeComponent } from './home.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -12,7 +14,9 @@ import { HomeComponent } from './home.component';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(HomeRoutes)
+    RouterModule.forChild(HomeRoutes),
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class HomeModule { }

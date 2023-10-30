@@ -32,6 +32,9 @@ export class LoginComponent {
   }
 
 
+  
+
+
   private initForm(){
     return this.fb.group({
       UserName: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(100)]],

@@ -5,27 +5,27 @@ import { Environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ClientService {
 
   constructor(private http: HttpClient) { }
 
 
   getAll(){
-    return this.http.get(`${Environment.baseUrl}/cliente`)
+    return this.http.get(`${Environment.baseUrl}/clients`)
   }
   getByid(id: number){
-    return this.http.get(`${Environment.baseUrl}/cliente/${id}`);
+    return this.http.get(`${Environment.baseUrl}/clients/${id}`);
   }
   delete(id: number){
-    return this.http.get(`${Environment.baseUrl}/cliente/${id}`);
+    return this.http.get(`${Environment.baseUrl}/clients/${id}`);
   }
   desactive(id: number, cliente : any){
-    return this.http.put(`${Environment.baseUrl}/cliente/${id}`, cliente)
+    return this.http.put(`${Environment.baseUrl}/clients/${id}`, cliente)
   }
   update(cliente: any){ // TODO CRIAR ESSE TIPO POR FAVOR
-    return this.http.put(`${Environment.baseUrl}/cliente`, cliente);
+    return this.http.put(`${Environment.baseUrl}/clients`, cliente);
   }
   create(cliente: any){ 
-    return this.http.post(`${Environment.baseUrl}/cliente`, cliente);
+    return this.http.post(`${Environment.baseUrl}/clients`, cliente);
   }
 }

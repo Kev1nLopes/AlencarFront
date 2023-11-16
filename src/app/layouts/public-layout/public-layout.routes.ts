@@ -3,7 +3,7 @@ import { PublicLayoutComponent } from "./public-layout.component";
 import { ClientsModule } from '../../pages/clients/clients.module';
 
 
-export const PublicLayoutRoutes : Routes = [
+export const PublicLayoutRoutes: Routes = [
     {
         path: '',
         component: PublicLayoutComponent,
@@ -17,12 +17,12 @@ export const PublicLayoutRoutes : Routes = [
                 path: 'clientes',
                 loadChildren: () => import('../../pages/clients/clients.module').then(x => x.ClientsModule)
             },
-            {   
+            {
                 path: 'produtos',
                 loadChildren: () => import('../../pages/products/products.module').then(x => x.ProductsModule)
             },
             {
-                path: 'requisicoes',
+                path: 'pedidos',
                 loadChildren: () => import('../../pages/requests/requests.module').then(x => x.RequestsModule)
             },
             {

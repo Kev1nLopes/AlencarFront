@@ -1,22 +1,32 @@
-<div class="w-2/3 hmin-h-[300px] h-[40vh] bg-gray-100 rounded-xl drop-shadow-lg p-[1rem]" >
-    <h5 class="text-gray-800 font-bold">Listagem de Produtos</h5>
-
-    <div class="">
-        <div class="grid grid-cols-12 py-10">
-            <div class="col-span-4">Nome</div>
-            <div class="col-span-4">Email</div>
-            <div class="col-span-2">Data Cadastro</div>
-            <div class="col-span-2">Status</div>
-        </div>
-        <div class="grid grid-cols-12 ">
-            <div class="col-span-4">Kevin Diones Lopes</div>
-            <div class="col-span-4">contatokevinlopes@gmail.com</div>
-            <div class="col-span-2">24/10/2023</div>
-            <div class="col-span-2">Ativo</div>
-        </div>
-        
+<div class="w-3/3  p-4">
+    <div class="flex justify-between">
+        <h1 class="text-2xl text-gray-800 font-bold">Listagem de Produtos</h1>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded">Novo produto</button>
     </div>
-    <div class="" *ngFor="let i of listProducts">
+    <!-- <div class="" *ngFor="let i of listProducts">
         <p>{{i}}</p>
-    </div>
+    </div> -->
  </div>
+
+
+    <table class=" w-full mt-10  bg-gray-100 rounded-xl drop-shadow-lg">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="py-2 px-4 col-span-4">Nome</th>
+                <th class="py-2 px-4 col-span-4">Email</th>
+                <th class="py-2 px-4 col-span-2">Data Cadastro</th>
+                <th class="py-2 px-4 col-span-2">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b">
+                <td class="py-2 px-4 col-span-4">Kevin Diones Lopes</td>
+                <td class="py-2 px-4 col-span-4">contatokevinlopes@gmail.com</td>
+                <td class="py-2 px-4 col-span-2">24/10/2023</td>
+                <td class="py-2 px-4 col-span-2">
+                    <span class="bg-green-500 text-white py-1 px-2 rounded-full">Ativo</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

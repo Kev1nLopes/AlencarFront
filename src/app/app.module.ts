@@ -10,6 +10,7 @@ import { RequestsComponent } from './pages/requests/requests.component';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { VehicleComponent } from './pages/vehicle/vehicle.component';
 import { ShippingCompanyComponent } from './pages/shipping-company/shipping-company.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
 
 @NgModule({
   declarations: [

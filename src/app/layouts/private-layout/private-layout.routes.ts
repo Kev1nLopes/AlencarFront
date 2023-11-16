@@ -11,7 +11,10 @@ export const PrivateLayoutRoutes : Routes = [
                 path: 'login',
                 loadChildren:  () => import('../../pages/auth/login/login.module').then(x => x.LoginModule)
             },
-            
+            {
+                path: 'register',
+                loadChildren:  () => import('../../pages/auth/register/register.module').then(x => x.RegisterModule)
+            },
         ]
     }
 ]

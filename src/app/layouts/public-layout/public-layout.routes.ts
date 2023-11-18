@@ -10,6 +10,7 @@ export const PublicLayoutRoutes: Routes = [
         children: [
             {
                 path: '',
+                canLoad
                 loadChildren: () => import('../../pages/home/home.module').then(x => x.HomeModule)
             },
             {

@@ -6,11 +6,12 @@ export const AppRoutes : Routes = [
     {
         path: '',
         loadChildren: () => import('./layouts/public-layout/public-layout.module').then(x => x.PublicLayoutModule),
+        canActivate: [authGuard]
     },
     {
         path: 'auth',
         loadChildren: () => import('./layouts/private-layout/private-layout.module').then(x => x.PrivateLayoutModule),
-        canActivate: [authGuard]
+        
     },
     {
         path: 'login',

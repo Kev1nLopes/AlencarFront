@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ export class LoginComponent {
   public form: FormGroup;
   public loading = false;
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private auth: AuthService){
     this.form = this.initForm();
   }
 
@@ -21,14 +22,19 @@ export class LoginComponent {
 
     this.loading = true;
 
+    this.auth.login(this.form.getRawValue()).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+
     setTimeout(()=>{
       this.loading = false;
     }, 3000)
     
-
-
-
-    console.log(this.form.getRawValue());
   }
 
 

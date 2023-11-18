@@ -16,6 +16,7 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit(): void {
       this.getClients();
+      console.log("kevin bonito")
   }
 
 

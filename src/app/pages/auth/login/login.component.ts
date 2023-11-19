@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';  // Importe o Router
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from './types';
 
 @Component({
   templateUrl: './login.component.html',
@@ -12,43 +13,33 @@ export class LoginComponent {
   public form: FormGroup;
   public loading = false;
 
-  constructor(private fb: FormBuilder, private auth: AuthService){
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {  // Injete o Router
     this.form = this.initForm();
   }
 
-
-
-  public async handleLogin(){
-
+  public async handleLogin() {
     this.loading = true;
 
     this.auth.login(this.form.getRawValue()).subscribe({
-      next: (data) => {
-        console.log(data);
+      next: (data: any) => {
+        const user: User = data as User;
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        sessionStorage.setItem('token', JSON.stringify(user.token));
+        this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.log(err)
+        console.log(err);
+      },
+      complete: () => {
+        this.loading = false;
       }
-    })
-
-    setTimeout(()=>{
-      this.loading = false;
-    }, 3000)
-    
+    });
   }
 
-
-  
-
-
-  private initForm(){
+  private initForm() {
     return this.fb.group({
-      UserName: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(100)]],
-      Password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]]
-    })
+      username: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(100)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]]
+    });
   }
-
-
-  
-
 }

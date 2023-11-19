@@ -1,19 +1,21 @@
 <main>
     <div class="login-container">
-        
-        <form [formGroup]="form" (ngSubmit)="handleLogin()" novalidate  class="flex flex-col gap-7 justify-center items-center">
+
+        <form [formGroup]="form" (ngSubmit)="handleLogin()" novalidate
+            class="flex flex-col gap-7 justify-center items-center">
             <h3>Peludos & Cia</h3>
             <div class="flex flex-col gap-2 w-full">
                 <label htmlFor="username">Username</label>
-                <input pInputText id="username" class="border" aria-describedby="username-help" formControlName="UserName"  />
+                <input pInputText id="username" class="border" aria-describedby="username-help"
+                    formControlName="username" />
             </div>
             <div class="flex flex-col gap-2 w-full ">
                 <label htmlFor="username">Password</label>
                 <!-- <input pInputText id="username" class="border" aria-describedby="password-help" formControlName="Password"  /> -->
-                <p-password   class="border" formControlName="Password" [toggleMask]="true"></p-password>
+                <p-password class="border" formControlName="password" [toggleMask]="true"></p-password>
             </div>
-            
-            <p-button type="submit" label="Entrar" class="btn-login" [loading]="loading" ></p-button>
+
+            <p-button type="submit" label="Entrar" class="btn-login" [loading]="loading"></p-button>
         </form>
     </div>
 

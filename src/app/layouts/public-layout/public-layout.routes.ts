@@ -10,7 +10,7 @@ export const PublicLayoutRoutes: Routes = [
         children: [
             {
                 path: '',
-                loadChildren: () => import('../../pages/home/home.module').then(x => x.HomeModule)
+                loadChildren: () => import('../../pages/home/home.module').then(x => x.HomeModule),
             },
             {
                 path: 'clientes',

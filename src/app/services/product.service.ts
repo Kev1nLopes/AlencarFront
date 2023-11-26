@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../environments/environment';
 
@@ -6,26 +6,43 @@ import { Environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class ProductService {
+  private headers: HttpHeaders;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      const tokenWithoutQuotes = token.replace(/["]+/g, '');
 
-
-  getAll(){
-    return this.http.get(`${Environment.baseUrl}/produto`)
+      this.headers = new HttpHeaders({
+        'Authorization': `Bearer ${tokenWithoutQuotes}`
+      });
+    } else {
+      this.headers = new HttpHeaders();
+    }
   }
-  getByid(id: number){
+
+  getAll() {
+    return this.http.get(`${Environment.baseUrl}/products`, { headers: this.headers });
+  }
+
+  getById(id: number) {
     return this.http.get(`${Environment.baseUrl}/produto/${id}`);
   }
-  delete(id: number){
+
+  delete(id: number) {
     return this.http.get(`${Environment.baseUrl}/produto/${id}`);
   }
-  desactive(id: number, produto : any){
-    return this.http.put(`${Environment.baseUrl}/produto/${id}`, produto)
+
+  desactive(id: number, produto: any) {
+    return this.http.put(`${Environment.baseUrl}/produto/${id}`, produto);
   }
-  update(produto: any){ // TODO CRIAR ESSE TIPO POR FAVOR
+
+  update(produto: any) {
+    // TODO: Criar esse tipo conforme necessário
     return this.http.put(`${Environment.baseUrl}/produto`, produto);
   }
-  create(produto: any){ 
+
+  create(produto: any) {
     return this.http.post(`${Environment.baseUrl}/produto`, produto);
   }
 }

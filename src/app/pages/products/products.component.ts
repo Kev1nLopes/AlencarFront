@@ -11,24 +11,29 @@ export class ProductsComponent implements OnInit {
   public listProducts: any;
 
   ngOnInit(): void {
-    this.product.getAll().subscribe({
-      next: (data) => {
-        this.listProducts = data;
-      },
-      error: (err) =>  {
-        console.log(err)
-      },
-      complete() {
-          
-      }, 
+    console.log('dsyhdtd')
+    this.product.getAll().subscribe(resp => {
+      console.log(resp)
     })
+
+    // .subscribe({
+    //   next: (data) => {
+    //     this.listProducts = data;
+    //   },
+    //   error: (err) => {
+    //     console.log(err)
+    //   },
+    //   complete() {
+
+    //   },
+    // })
   }
 
 
 
   constructor(private product: ProductService) {
 
-    
+
   }
 
 }

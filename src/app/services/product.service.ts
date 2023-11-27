@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Environment } from '../environments/environment';
+import { Product } from './types/product';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,8 @@ export class ProductService {
     }
   }
 
-  getAll() {
-    return this.http.get(`${Environment.baseUrl}/products`, { headers: this.headers });
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${Environment.baseUrl}/products`, { headers: this.headers });
   }
 
   getById(id: number) {

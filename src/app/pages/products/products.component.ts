@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/app/services/types/product';
 
 @Component({
   selector: 'app-products',
@@ -8,32 +9,23 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductsComponent implements OnInit {
 
-  public listProducts: any;
+  public produtos: Product[] = [];
 
   ngOnInit(): void {
-    console.log('dsyhdtd')
-    this.product.getAll().subscribe(resp => {
-      console.log(resp)
-    })
+    console.log('Iniciando componente de produtos');
 
-    // .subscribe({
-    //   next: (data) => {
-    //     this.listProducts = data;
-    //   },
-    //   error: (err) => {
-    //     console.log(err)
-    //   },
-    //   complete() {
-
-    //   },
-    // })
+    this.product.getAll().subscribe(
+      (data) => {
+        this.produtos = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar produtos:', error);
+        alert('Erro ao carregar produtos. Por favor, tente novamente.');
+      }
+    );
   }
 
-
-
   constructor(private product: ProductService) {
-
-
   }
 
 }

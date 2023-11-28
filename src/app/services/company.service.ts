@@ -1,31 +1,45 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Environment } from '../environments/environment';
+import { HeadersService } from './headers.service';
+import { ShippingCompany } from './types/shippingCompany';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  constructor(private http: HttpClient) { }
+  private headers: HttpHeaders;
 
+  constructor(
+    private http: HttpClient,
+    private headersService: HeadersService
+  ) {
+    this.headers = this.headersService.getHeaders();
+  }
 
-  getAll(){
-    return this.http.get(`${Environment.baseUrl}/shipping-company`)
+  getAll(): Observable<ShippingCompany[]> {
+    return this.http.get<ShippingCompany[]>(`${Environment.baseUrl}/shipping-company`, { headers: this.headers });
   }
-  getByid(id: number){
-    return this.http.get(`${Environment.baseUrl}/shipping-company/${id}`);
+
+  getById(id: number): Observable<any> {
+    return this.http.get(`${Environment.baseUrl}/shipping-company/${id}`, { headers: this.headers });
   }
-  delete(id: number){
-    return this.http.get(`${Environment.baseUrl}/shipping-company/${id}`);
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${Environment.baseUrl}/shipping-company/${id}`, { headers: this.headers });
   }
-  desactive(id: number, shipping : any){
-    return this.http.put(`${Environment.baseUrl}/shipping-company/${id}`, shipping)
+
+  desactivate(id: number, shipping: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/shipping-company/${id}`, shipping, { headers: this.headers });
   }
-  update(shipping: any){ // TODO CRIAR ESSE TIPO POR FAVOR
-    return this.http.put(`${Environment.baseUrl}/shipping-company`, shipping);
+
+  update(shipping: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/shipping-company`, shipping, { headers: this.headers });
   }
-  create(shipping: any){ 
-    return this.http.post(`${Environment.baseUrl}/shipping-company`, shipping);
+
+  create(shipping: any): Observable<any> {
+    return this.http.post(`${Environment.baseUrl}/shipping-company`, shipping, { headers: this.headers });
   }
 }

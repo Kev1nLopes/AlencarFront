@@ -1,31 +1,44 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Environment } from '../environments/environment';
+import { HeadersService } from './headers.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
 
-  constructor(private http: HttpClient) { }
+  private headers: HttpHeaders;
 
+  constructor(
+    private http: HttpClient,
+    private headersService: HeadersService
+  ) {
+    this.headers = this.headersService.getHeaders();
+  }
 
-  getAll(){
-    return this.http.get(`${Environment.baseUrl}/vehicle`)
+  getAll(): Observable<any> {
+    return this.http.get(`${Environment.baseUrl}/vehicle`, { headers: this.headers });
   }
-  getByid(id: number){
-    return this.http.get(`${Environment.baseUrl}/vehicle/${id}`);
+
+  getById(id: number): Observable<any> {
+    return this.http.get(`${Environment.baseUrl}/vehicle/${id}`, { headers: this.headers });
   }
-  delete(id: number){
-    return this.http.get(`${Environment.baseUrl}/vehicle/${id}`);
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${Environment.baseUrl}/vehicle/${id}`, { headers: this.headers });
   }
-  desactive(id: number, vehicle : any){
-    return this.http.put(`${Environment.baseUrl}/vehicle/${id}`, vehicle)
+
+  desactive(id: number, vehicle: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/vehicle/${id}`, vehicle, { headers: this.headers });
   }
-  update(vehicle: any){ // TODO CRIAR ESSE TIPO POR FAVOR
-    return this.http.put(`${Environment.baseUrl}/vehicle`, vehicle);
+
+  update(vehicle: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/vehicle`, vehicle, { headers: this.headers });
   }
-  create(vehicle: any){ 
-    return this.http.post(`${Environment.baseUrl}/vehicle`, vehicle);
+
+  create(vehicle: any): Observable<any> {
+    return this.http.post(`${Environment.baseUrl}/vehicle`, vehicle, { headers: this.headers });
   }
 }

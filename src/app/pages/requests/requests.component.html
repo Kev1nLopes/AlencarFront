@@ -1,31 +1,32 @@
-<div class="w-3/3  p-4">
+<div class="w-3/3 p-4">
     <div class="flex justify-between">
         <h1 class="text-2xl text-gray-800 font-bold">Listagem de Pedidos</h1>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded">Novo Pedido</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded">Nova Pedido</button>
     </div>
-    <!-- <div class="" *ngFor="let i of listProducts">
-        <p>{{i}}</p>
-    </div> -->
+
+    <table class="w-full mt-10 bg-gray-100 rounded-xl drop-shadow-lg">
+        <thead>
+            <tr class="bg-blue-500 text-white">
+                <th class="py-2 px-4 text-left">ID</th>
+                <th class="py-2 px-4 col-span-8 text-left">Cliente</th>
+                <th class="py-2 px-4 col-span-8 text-left">Produto</th>
+                <th class="py-2 px-4 text-left">Veículo</th>
+                <th class="py-2 px-4 text-left">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through requests and display each row -->
+            <tr class="border-b" *ngFor="let request of requests">
+                <td class="py-2 px-4 text-left">{{ request.id }}</td>
+                <td class="py-2 px-4 col-span-8 text-left">{{ request.client.name }}</td>
+                <td class="py-2 px-4 col-span-8 text-left">{{ request.product.name }}</td>
+                <td class="py-2 px-4 text-left">{{ request.vehicle.plateNumber }}</td>
+                <td class="py-2 px-4 text-left">
+                    <span [class]="getStatusChipClass(request.status)">
+                        {{ getStatusName(request.status) }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-
-
-<table class="w-full mt-10 bg-gray-100 rounded-xl drop-shadow-lg">
-    <thead>
-        <tr class="bg-blue-500 text-white">
-            <th class="py-2 px-4 col-span-4 text-left">Nome</th>
-            <th class="py-2 px-4 col-span-4 text-left">Email</th>
-            <th class="py-2 px-4 col-span-2 text-left">Data Cadastro</th>
-            <th class="py-2 px-4 col-span-2 text-left">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="border-b">
-            <td class="py-2 px-4 col-span-4 text-left">Kevin Diones Lopes</td>
-            <td class="py-2 px-4 col-span-4 text-left">contatokevinlopes@gmail.com</td>
-            <td class="py-2 px-4 col-span-2 text-left">24/10/2023</td>
-            <td class="py-2 px-4 col-span-2 text-left">
-                <span class="bg-green-500 text-white py-1 px-2 rounded-full">Ativo</span>
-            </td>
-        </tr>
-    </tbody>
-</table>

@@ -1,31 +1,45 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Environment } from '../environments/environment';
+import { HeadersService } from './headers.service';
+import { Client } from './types/client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
 
-  constructor(private http: HttpClient) { }
+  private headers: HttpHeaders;
 
+  constructor(
+    private http: HttpClient,
+    private headersService: HeadersService
+  ) {
+    this.headers = this.headersService.getHeaders();
+  }
 
-  getAll(){
-    return this.http.get(`${Environment.baseUrl}/clients`)
+  getAll(): Observable<Client[]> {
+    return this.http.get<Client[]>(`${Environment.baseUrl}/clients`, { headers: this.headers });
   }
-  getByid(id: number){
-    return this.http.get(`${Environment.baseUrl}/clients/${id}`);
+
+  getById(id: number): Observable<any> {
+    return this.http.get(`${Environment.baseUrl}/clients/${id}`, { headers: this.headers });
   }
-  delete(id: number){
-    return this.http.get(`${Environment.baseUrl}/clients/${id}`);
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${Environment.baseUrl}/clients/${id}`, { headers: this.headers });
   }
-  desactive(id: number, cliente : any){
-    return this.http.put(`${Environment.baseUrl}/clients/${id}`, cliente)
+
+  desactivate(id: number, client: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/clients/${id}`, client, { headers: this.headers });
   }
-  update(cliente: any){ // TODO CRIAR ESSE TIPO POR FAVOR
-    return this.http.put(`${Environment.baseUrl}/clients`, cliente);
+
+  update(client: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/clients`, client, { headers: this.headers });
   }
-  create(cliente: any){ 
-    return this.http.post(`${Environment.baseUrl}/clients`, cliente);
+
+  create(client: any): Observable<any> {
+    return this.http.post(`${Environment.baseUrl}/clients`, client, { headers: this.headers });
   }
 }

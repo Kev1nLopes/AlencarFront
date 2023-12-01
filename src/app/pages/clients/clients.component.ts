@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/clients.service';
+import { Client } from 'src/app/services/types/client';
 
 @Component({
   selector: 'app-clients',
@@ -9,29 +9,21 @@ import { ClientService } from 'src/app/services/clients.service';
 })
 export class ClientsComponent implements OnInit {
 
+  public clients: Client[] = [];
 
-  constructor(private client: ClientService) {
-
-  }
+  constructor(private client: ClientService) { }
 
   ngOnInit(): void {
-      this.getClients();
-      console.log("kevin bonito")
+    console.log('Iniciando componente de empresas de transporte');
+
+    this.client.getAll().subscribe(
+      (data) => {
+        this.clients = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar os clientes:', error);
+        alert('Erro ao carregar os clientes. Por favor, tente novamente.');
+      }
+    );
   }
-
-
-  getClients(){
-    this.client.getAll().subscribe({
-      next: (data) =>{
-        console.log(data);
-      },
-      error: (err) =>{
-        console.log(err);
-      },
-      complete() {
-          
-      },
-    })
-  }
-
 }

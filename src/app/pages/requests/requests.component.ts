@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestService } from 'src/app/services/request.service';
 import { Request, Status } from 'src/app/services/types/request';
+import { ChangeStatusRequestDialogComponent } from './components/change-status-request-dialog/change-status-request-dialog.component';
 import { RequestsFormDialogComponent } from './components/requests-form-dialog/requests-form-dialog.component';
 
 @Component({
@@ -27,6 +28,16 @@ export class RequestsComponent implements OnInit {
   openNewRequestDialog(): void {
     const dialogRef = this.dialog.open(RequestsFormDialogComponent, {
       minWidth: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadRequests();
+    });
+  }
+
+  openChangestatusRequestDialog(request_id: number): void {
+    const dialogRef = this.dialog.open(ChangeStatusRequestDialogComponent, {
+      minWidth: '600px',
+      data: { request_id: request_id }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadRequests();

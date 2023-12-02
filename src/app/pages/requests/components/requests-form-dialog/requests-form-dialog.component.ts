@@ -76,17 +76,7 @@ export class RequestsFormDialogComponent {
     });
   }
 
-  formatClientOption(client: Client): string {
-    return client.name;
-  }
 
-  formatProductOption(product: Product): string {
-    return product.name;
-  }
-
-  formatVehicleOption(vehicle: Vehicle): string {
-    return vehicle.plateNumber;
-  }
 
   createRequest() {
     this.request.create(this.requestForm.value).subscribe(result => { });

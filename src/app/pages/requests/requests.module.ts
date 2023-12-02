@@ -7,13 +7,15 @@ import { RequestsFormDialogComponent } from './components/requests-form-dialog/r
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ChangeStatusRequestDialogComponent } from './components/change-status-request-dialog/change-status-request-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     RequestsComponent,
-    RequestsFormDialogComponent
+    RequestsFormDialogComponent,
+    ChangeStatusRequestDialogComponent
   ],
   imports: [
     CommonModule,

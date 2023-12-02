@@ -1,0 +1,22 @@
+<div>
+  <h1 mat-dialog-title class="title">Mudar status do pedido</h1>
+  <div mat-dialog-content class="modal-container">
+    <div class="modal-content">
+      <form [formGroup]="statusForm" class="form-container">
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <select matNativeControl formControlName="status" required>
+            <option *ngFor="let option of statusOptions" [value]="option.value">
+              {{ option.label }}
+            </option>
+          </select>
+        </mat-form-field>
+      </form>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="modal-actions">
+    <button class="bg-gray-500 text-white py-2 px-4 rounded" (click)="onClose()">Cancelar</button>
+    <button class="bg-blue-500 text-white py-2 px-4 rounded" (click)="changeStatus()">Salvar</button>
+  </div>
+</div>

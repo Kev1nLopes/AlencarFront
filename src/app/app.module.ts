@@ -14,6 +14,9 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { JwtAuthInterceptor } from './interceptor/jwt-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
+    MatInputModule,
+    MatNativeDateModule,
+
 
   ],
   providers: [

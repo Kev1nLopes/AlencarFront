@@ -1,0 +1,33 @@
+.title {
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
+  font-size: x-large;
+}
+
+.modal-container {
+  padding: 1.5rem;
+}
+
+.modal-content {
+  width: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+
+.modal-actions button {
+  margin-left: 1rem;
+}

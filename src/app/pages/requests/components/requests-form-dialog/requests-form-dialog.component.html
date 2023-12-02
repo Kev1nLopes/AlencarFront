@@ -1,7 +1,32 @@
-<h1 mat-dialog-title>Hi Débora</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Cancelar</button>
+<div>
+  <h1 mat-dialog-title class="title">Novo pedido</h1>
+  <div mat-dialog-content class="modal-container">
+    <div class="modal-content">
+      <form [formGroup]="requestForm" class="form-container">
+        <mat-form-field class="form-field">
+          <mat-label>Produto</mat-label>
+          <input matInput formControlName="product_id">
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Quantidade</mat-label>
+          <input matInput formControlName="amount">
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Cliente</mat-label>
+          <input matInput formControlName="client_id">
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Veículo</mat-label>
+          <input matInput formControlName="vehicle_id">
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div mat-dialog-actions class="modal-actions">
+    <button class="bg-gray-500 text-white py-2 px-4 rounded" (click)="onClose()">Cancelar</button>
+    <button class="bg-blue-500 text-white py-2 px-4 rounded" (click)="onClose()">Salvar</button>
+  </div>
 </div>

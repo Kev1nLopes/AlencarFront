@@ -34,8 +34,8 @@ export class RequestsComponent implements OnInit {
 
   openNewRequestDialog(): void {
     const dialogRef = this.dialog.open(RequestsFormDialogComponent, {
+      minWidth: '600px',
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

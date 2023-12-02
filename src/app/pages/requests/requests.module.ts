@@ -11,11 +11,13 @@ import { ChangeStatusRequestDialogComponent } from './components/change-status-r
 
 
 
+
 @NgModule({
   declarations: [
     RequestsComponent,
     RequestsFormDialogComponent,
     ChangeStatusRequestDialogComponent
+
   ],
   imports: [
     CommonModule,

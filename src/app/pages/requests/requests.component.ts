@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { RequestService } from 'src/app/services/request.service';
 import { Request, Status } from 'src/app/services/types/request';
+import { RequestsFormDialogComponent } from './components/requests-form-dialog/requests-form-dialog.component';
 
 @Component({
   selector: 'app-requests',
@@ -11,7 +13,10 @@ export class RequestsComponent implements OnInit {
 
   public requests: Request[] = [];
 
-  constructor(private requestService: RequestService) { }
+  constructor(
+    private requestService: RequestService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     console.log('Iniciando componente de solicitações');
@@ -25,6 +30,15 @@ export class RequestsComponent implements OnInit {
         alert('Erro ao carregar os pedidos. Por favor, tente novamente.');
       }
     );
+  }
+
+  openNewRequestDialog(): void {
+    const dialogRef = this.dialog.open(RequestsFormDialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   getStatusName(status: Status): string {

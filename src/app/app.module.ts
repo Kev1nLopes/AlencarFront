@@ -12,6 +12,8 @@ import { VehicleComponent } from './pages/vehicle/vehicle.component';
 import { ShippingCompanyComponent } from './pages/shipping-company/shipping-company.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { JwtAuthInterceptor } from './interceptor/jwt-interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { JwtAuthInterceptor } from './interceptor/jwt-interceptor';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
-  
+    BrowserAnimationsModule,
+    MatDialogModule,
+
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtAuthInterceptor, multi: true} //Multi significa que podemos ter multiplos objetos utilizando esse jwt
+    { provide: HTTP_INTERCEPTORS, useClass: JwtAuthInterceptor, multi: true } //Multi significa que podemos ter multiplos objetos utilizando esse jwt
   ],
   bootstrap: [AppComponent]
 })

@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatInputModule,
     MatNativeDateModule,
-
+    MatAutocompleteModule
 
   ],
   providers: [

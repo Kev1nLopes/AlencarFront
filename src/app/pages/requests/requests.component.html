@@ -12,6 +12,7 @@
                 <th class="py-2 px-4 col-span-8 text-left">Produto</th>
                 <th class="py-2 px-4 text-left">Veículo</th>
                 <th class="py-2 px-4 text-left">Status</th>
+                <th class="py-2 px-4 text-left">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,13 @@
                     <span [class]="getStatusChipClass(request.status)">
                         {{ getStatusName(request.status) }}
                     </span>
+                </td>
+                <td class="py-2 px-4 text-left">
+                    <button class="bg-gray-500 text-white py-2 px-2 rounded mr-2"
+                        (click)="openNewRequestDialog()">Cancelar</button>
+                    <button class="bg-blue-500 text-white py-2 px-2 rounded" (click)="openNewRequestDialog()">
+                        Mudar status
+                    </button>
                 </td>
             </tr>
         </tbody>

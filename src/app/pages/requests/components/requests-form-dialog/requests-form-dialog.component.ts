@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ClientService } from 'src/app/services/clients.service';
 import { ProductService } from 'src/app/services/product.service';
+import { RequestService } from 'src/app/services/request.service';
 import { Client } from 'src/app/services/types/client';
 import { Product } from 'src/app/services/types/product';
 import { Vehicle } from 'src/app/services/types/vehicle';
@@ -26,6 +27,7 @@ export class RequestsFormDialogComponent {
     private product: ProductService,
     private client: ClientService,
     private vehicle: VehicleService,
+    private request: RequestService,
     public dialogRef: MatDialogRef<RequestsFormDialogComponent>,
   ) {
     this.requestForm = this.requestInitialValues();
@@ -86,8 +88,15 @@ export class RequestsFormDialogComponent {
     return vehicle.plateNumber;
   }
 
+  createRequest() {
+    this.request.create(this.requestForm.value).subscribe(result => { });
+    this.dialogRef.close();
+    this.requestForm.reset();
+  }
+
 
   onClose(): void {
     this.dialogRef.close();
+    this.requestForm.reset();
   }
 }

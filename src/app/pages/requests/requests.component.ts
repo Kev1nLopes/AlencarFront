@@ -21,6 +21,19 @@ export class RequestsComponent implements OnInit {
   ngOnInit(): void {
     console.log('Iniciando componente de solicitações');
 
+    this.loadRequests();
+  }
+
+  openNewRequestDialog(): void {
+    const dialogRef = this.dialog.open(RequestsFormDialogComponent, {
+      minWidth: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadRequests();
+    });
+  }
+
+  loadRequests(): void {
     this.requestService.getAll().subscribe(
       (data) => {
         this.requests = data;
@@ -30,15 +43,6 @@ export class RequestsComponent implements OnInit {
         alert('Erro ao carregar os pedidos. Por favor, tente novamente.');
       }
     );
-  }
-
-  openNewRequestDialog(): void {
-    const dialogRef = this.dialog.open(RequestsFormDialogComponent, {
-      minWidth: '600px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   getStatusName(status: Status): string {

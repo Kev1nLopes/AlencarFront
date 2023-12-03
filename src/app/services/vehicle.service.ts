@@ -30,8 +30,8 @@ export class VehicleService {
     return this.http.delete(`${Environment.baseUrl}/vehicle/${id}`, { headers: this.headers });
   }
 
-  desactive(id: number, vehicle: any): Observable<any> {
-    return this.http.put(`${Environment.baseUrl}/vehicle/${id}`, vehicle, { headers: this.headers });
+  desactive(vehicle: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/vehicle/${vehicle.id}`, vehicle, { headers: this.headers });
   }
 
   update(vehicle: any): Observable<any> {
@@ -39,6 +39,6 @@ export class VehicleService {
   }
 
   create(vehicle: any): Observable<any> {
-    return this.http.post(`${Environment.baseUrl}/vehicle`, vehicle, { headers: this.headers });
+    return this.http.post(`${Environment.baseUrl}/vehicle/new`, vehicle, { headers: this.headers });
   }
 }

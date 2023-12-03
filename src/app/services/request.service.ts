@@ -36,6 +36,6 @@ export class RequestService {
   }
 
   create(request: any): Observable<any> {
-    return this.http.post(`${Environment.baseUrl}/request`, request, { headers: this.headers });
+    return this.http.post(`${Environment.baseUrl}/request/new`, request, { headers: this.headers });
   }
 }

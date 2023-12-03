@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -22,6 +23,7 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     ReactiveFormsModule,
     ToggleButtonModule,
+    DropdownModule,
     ButtonModule,
     DialogModule,
     RouterModule.forChild(RequestsRoutes)

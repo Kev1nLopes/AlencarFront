@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { ClientService } from 'src/app/services/clients.service';
+import { ProductService } from 'src/app/services/product.service';
 import { RequestService } from 'src/app/services/request.service';
+import { Client } from 'src/app/services/types/client';
+import { Product } from 'src/app/services/types/product';
 import { Request, Status } from 'src/app/services/types/request';
+import { Vehicle } from 'src/app/services/types/vehicle';
+import { VehicleService } from 'src/app/services/vehicle.service';
 
 @Component({
   selector: 'app-requests',
@@ -13,21 +19,23 @@ import { Request, Status } from 'src/app/services/types/request';
 export class RequestsComponent implements OnInit {
 
   public requests: Request[] = [];
+  public clients: Client[] = [];
+  public vehicles: Vehicle[] = [];
+  public products: Product[] = [];
+  public showDialog = false;
+  public form : FormGroup;
 
-  constructor(private requestService: RequestService, private message: MessageService, private fb: FormBuilder) { }
+  constructor(private requestService: RequestService, private message: MessageService, private fb: FormBuilder, private client: ClientService, private vehicle: VehicleService, private product: ProductService) {
+    this.form = this.initForm();
+   }
 
   ngOnInit(): void {
     console.log('Iniciando componente de solicitações');
+    this.getAllRequests();
+    this.getAllVehicles();
+    this.getAllClients();
+    this.getAllProducts();
 
-    this.requestService.getAll().subscribe(
-      (data) => {
-        this.requests = data;
-      },
-      (error) => {
-        console.error('Erro ao carregar os pedidos:', error);
-        alert('Erro ao carregar os pedidos. Por favor, tente novamente.');
-      }
-    );
   }
 
   getStatusName(status: Status): string {
@@ -70,5 +78,111 @@ export class RequestsComponent implements OnInit {
       default:
         return 'bg-gray-500 text-white py-1 px-2 rounded-full';
     }
+  }
+
+  getAllRequests(){
+    this.requestService.getAll().subscribe(
+      {
+        next: (data) => {
+          this.requests = data;
+          console.log(this.requests)
+        },
+        error: (error) => {
+          this.message.add({severity: 'error', summary: 'Ops! Ocorreu um erro', detail: 'Nao foi possivel desativar o veiculo, verifique os dados ou entre em contato com o suporte'});
+        }
+      }
+
+    );
+  }
+  getAllVehicles(){
+    this.vehicle.getAll().subscribe(
+      {
+        next: (data) => {
+          this.vehicles = data;
+        },
+        error: (error) => {
+     
+        }
+      }
+
+    );
+  }
+  getAllProducts(){
+    this.product.getAll().subscribe(
+      {
+        next: (data) => {
+          this.products = data;
+        },
+        error: (error) => {
+          
+        }
+      }
+
+    );
+
+  }
+
+  getAllClients(){
+    this.client.getAll().subscribe(
+      {
+        next: (data) => {
+          this.clients = data;
+        },
+        error: (error) => {
+         
+        }
+      });
+
+  }
+
+  createNewRequest(){
+    try{ 
+      let value = this.form.getRawValue();
+      console.log(value);
+      this.requestService.create({
+        amount: parseFloat(value.amount),
+        client_id: value.client.id,
+        product_id: value.product.id,
+        vehicle_id: value.vehicle.id,
+      }).subscribe(value => {
+        this.message.add({severity: 'success', summary: 'Transportadora cadastrada com sucesso'});
+        this.getAllRequests();
+      });
+    }catch(err){
+      console.log(err);
+      this.message.add({severity: 'error', summary: 'Ops! Ocorreu um erro', detail: 'Nao foi possivel cadastrar a Transportadora, verifique os dados ou entre em contato com o suporte'});
+
+    }finally{
+      this.form.reset();
+      this.showDialog = false;
+    }
+    
+  }
+
+  // desactiveCompany(product: any){
+  //   try{
+      
+  //     this.requestService.desactivate(product).subscribe(value => {
+  //       this.message.add({severity: 'success', summary: 'Veiculo desativado com sucesso'});
+  //       this.getAllVehicle();
+  //     });
+  //   }catch(err){
+  //     this.message.add({severity: 'error', summary: 'Ops! Ocorreu um erro', detail: 'Nao foi possivel desativar o veiculo, verifique os dados ou entre em contato com o suporte'});
+
+  //   }finally{
+  //     this.form.reset();
+  //     this.showDialog = false;
+  //   }
+  // }
+
+
+  initForm():FormGroup{
+    return this.fb.group({
+      amount: [0, [Validators.required]],
+      client: ['', [Validators.required]],
+      product: ['', [Validators.required]],
+      vehicle: ['', [Validators.required]],
+      active: true,
+    })
   }
 }

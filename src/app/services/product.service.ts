@@ -24,22 +24,22 @@ export class ProductService {
   }
 
   getById(id: number): Observable<any> {
-    return this.http.get(`${Environment.baseUrl}/produto/${id}`, { headers: this.headers });
+    return this.http.get(`${Environment.baseUrl}/products/${id}`, { headers: this.headers });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${Environment.baseUrl}/produto/${id}`, { headers: this.headers });
+    return this.http.delete(`${Environment.baseUrl}/products/${id}`, { headers: this.headers });
   }
 
-  desactive(id: number, produto: any): Observable<any> {
-    return this.http.put(`${Environment.baseUrl}/produto/${id}`, produto, { headers: this.headers });
+  desactive(produto: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/products/${produto.id}`, produto, { headers: this.headers });
   }
 
   update(produto: any): Observable<any> {
-    return this.http.put(`${Environment.baseUrl}/produto`, produto, { headers: this.headers });
+    return this.http.put(`${Environment.baseUrl}/products`, produto, { headers: this.headers });
   }
 
   create(produto: any): Observable<any> {
-    return this.http.post(`${Environment.baseUrl}/produto`, produto, { headers: this.headers });
+    return this.http.post(`${Environment.baseUrl}/products/new`, produto, { headers: this.headers });
   }
 }

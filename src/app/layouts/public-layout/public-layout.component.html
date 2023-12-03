@@ -33,7 +33,7 @@
       </a>
     </div>
     <div class="w-full border-b-2"></div>
-    <div class=" p-[1rem] flex flex-col gap-[1rem]">
+    <div class=" p-[1rem] flex flex-col gap-[1rem] h-full relative">
       <p>Preferências</p>
       <p
         class="w-full flex items-center hover:text-blue-500 ps-[1rem] gap-[1rem] py-[1rem] hover:bg-white transition-all rounded cursor-pointer">
@@ -46,6 +46,13 @@
         <i class="pi pi-question-circle" style="font-size: 2rem"></i>
         FAQ
       </p>
+
+      <p
+      (click)="logout()"
+      class="w-2/3 flex items-center hover:text-blue-500 ps-[1rem] gap-[1rem] py-[1rem] hover:bg-white transition-all rounded cursor-pointer absolute bottom-3 self-center ">
+      <i class="pi pi-sign-out" style="font-size: 2rem"></i>
+      Sair
+    </p>
     </div>
   </div>
   <div class="xl:col-span-10 md:col-span-9">

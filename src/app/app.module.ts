@@ -12,6 +12,8 @@ import { VehicleComponent } from './pages/vehicle/vehicle.component';
 import { ShippingCompanyComponent } from './pages/shipping-company/shipping-company.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { JwtAuthInterceptor } from './interceptor/jwt-interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { JwtAuthInterceptor } from './interceptor/jwt-interceptor';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
   

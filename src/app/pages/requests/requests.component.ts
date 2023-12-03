@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { RequestService } from 'src/app/services/request.service';
 import { Request, Status } from 'src/app/services/types/request';
 
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
-  styleUrls: ['./requests.component.scss']
+  styleUrls: ['./requests.component.scss'],
+  providers: [MessageService]
 })
 export class RequestsComponent implements OnInit {
 
   public requests: Request[] = [];
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private message: MessageService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     console.log('Iniciando componente de solicitações');

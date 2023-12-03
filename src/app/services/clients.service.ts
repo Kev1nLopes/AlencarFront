@@ -31,8 +31,8 @@ export class ClientService {
     return this.http.delete(`${Environment.baseUrl}/clients/${id}`, { headers: this.headers });
   }
 
-  desactivate(id: number, client: any): Observable<any> {
-    return this.http.put(`${Environment.baseUrl}/clients/${id}`, client, { headers: this.headers });
+  desactivate(client: Client): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/clients/${client.id}`, client, { headers: this.headers });
   }
 
   update(client: any): Observable<any> {
@@ -40,6 +40,6 @@ export class ClientService {
   }
 
   create(client: any): Observable<any> {
-    return this.http.post(`${Environment.baseUrl}/clients`, client, { headers: this.headers });
+    return this.http.post(`${Environment.baseUrl}/clients/new`, client, { headers: this.headers });
   }
 }

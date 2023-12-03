@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShippingCompany } from 'src/app/services/types/shippingCompany'; // Certifique-se de importar o tipo de transporte
 import { CompanyService } from 'src/app/services/company.service'; // Certifique-se de importar o serviço de empresas de transporte
+import { MessageService } from 'primeng/api';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-shipping-company',
@@ -10,6 +12,8 @@ import { CompanyService } from 'src/app/services/company.service'; // Certifique
 export class ShippingCompanyComponent implements OnInit {
 
   public companies: ShippingCompany[] = [];
+
+
 
   ngOnInit(): void {
     console.log('Iniciando componente de empresas de transporte');
@@ -25,7 +29,7 @@ export class ShippingCompanyComponent implements OnInit {
     );
   }
 
-  constructor(private company: CompanyService) {
+  constructor(private company: CompanyService, private message: MessageService, private fb: FormBuilder) {
   }
 
 }

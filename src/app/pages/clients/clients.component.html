@@ -1,26 +1,51 @@
 <div class="w-3/3 p-4">
     <div class="flex justify-between">
-        <h1 class="text-2xl text-gray-800 font-bold">Listagem de </h1>Clientes
-        <button class="bg-blue-500 text-white py-2 px-4 rounded">Novo cliente</button>
+        <h1 class="text-2xl text-gray-800 font-bold">Listagem de Clientes</h1>
+        <button (click)="showDialog = true;" class="bg-blue-500 text-white py-2 px-4 rounded">Novo cliente</button>
     </div>
 
     <table class="w-full mt-10 bg-gray-100 rounded-xl drop-shadow-lg">
         <thead>
             <tr class="bg-blue-500 text-white">
-                <th class="py-2 px-4 col-span-4 text-left">Id</th>
+                <th class="py-2 px-4 col-span-4 text-left">ID</th>
                 <th class="py-2 px-4 col-span-4 text-left">Nome</th>
                 <th class="py-2 px-4 col-span-2 text-left">Status</th>
+                
+                
             </tr>
         </thead>
         <tbody>
             <tr class="border-b" *ngFor="let cliente of clients">
                 <td class="py-2 px-4 col-span-4 text-left">{{ cliente.id }}</td>
                 <td class="py-2 px-4 col-span-4 text-left">{{ cliente.name }}</td>
+          
                 <td class="py-2 px-4 col-span-2 text-left">
-                    <span class="bg-green-500 text-white py-1 px-2 rounded-full" *ngIf="cliente.active">Ativo</span>
+                    
+                    <span class="bg-green-500 text-white py-1 px-4 rounded-full cursor-pointer" (click)="desactiveClient(cliente)" *ngIf="cliente.active">Ativo</span>
                     <span class="bg-gray-400 text-white py-1 px-2 rounded-full" *ngIf="!cliente.active">Inativo</span>
                 </td>
+              
+                
             </tr>
         </tbody>
     </table>
+    <p-toast></p-toast>
+
+    <p-dialog header="Cadastro de cliente" [modal]="true" [draggable]="false"  [(visible)]="showDialog">
+        <form [formGroup]="form" (ngSubmit)="createNewClient()">
+            <div class="flex flex-col gap-2 py-5 w-[30vw] min-w-[300px]">
+                <label htmlFor="username">Nome</label>
+                <input pInputText id="username" class="h-[48px] indent-3" aria-describedby="username-help" formControlName="name" />
+                
+            </div>
+            <div class="flex justify-end gap-3">
+                <p-button (onClick)="showDialog = false" label="Voltar" class="bg-gray-400 p-3 text-white  rounded ml-auto"></p-button>
+                <p-button [disabled]="form.invalid" label="Salvar" type="submit" class="bg-blue-500 p-3 text-white rounded"></p-button>
+                
+            </div>
+
+
+        </form>
+    </p-dialog>
 </div>
+

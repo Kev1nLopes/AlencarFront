@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { isUserAdmin } from 'src/app/utils/getAuthorities';
 
 @Component({
   selector: 'app-public-layout',
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class PublicLayoutComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router) { }
 
-  logout(){
+  public isAdmin: boolean = isUserAdmin();
+
+  logout() {
     sessionStorage.clear();
     this.router.navigate(['/auth/login']);
   }

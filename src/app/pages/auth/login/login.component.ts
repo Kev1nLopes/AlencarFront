@@ -24,6 +24,7 @@ export class LoginComponent {
       next: (data: any) => {
         const user: User = data as User;
         sessionStorage.setItem('currentUser', JSON.stringify(user));
+        console.log(user);
         sessionStorage.setItem('token', JSON.stringify(user.token));
         this.router.navigate(['/home/clientes']);
       },

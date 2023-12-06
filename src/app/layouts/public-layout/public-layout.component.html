@@ -12,17 +12,20 @@
         Produtos
       </a>
       <a routerLink="/home/veiculos" routerLinkActive="bg-white text-blue-500 border-b border-white"
-        class="w-full flex items-center ps-[1rem] gap-[1rem] white py-[1rem] transition-all  cursor-pointer hover:border-b-2 hover:border-white">
+        class="w-full flex items-center ps-[1rem] gap-[1rem] white py-[1rem] transition-all  cursor-pointer hover:border-b-2 hover:border-white"
+        *ngIf="isAdmin">
         <i class="pi pi-car"></i>
         Veículos
       </a>
       <a routerLink="/home/transportadoras" routerLinkActive="bg-white text-blue-500 border-b border-white"
-        class="w-full flex items-center ps-[1rem] gap-[1rem] white py-[1rem] transition-all  cursor-pointer hover:border-b-2 hover:border-white">
+        class="w-full flex items-center ps-[1rem] gap-[1rem] white py-[1rem] transition-all  cursor-pointer hover:border-b-2 hover:border-white"
+        *ngIf="isAdmin">
         <i class="pi pi-truck"></i>
         Transportadoras
       </a>
       <a routerLink="/home/clientes" routerLinkActive="bg-white text-blue-500 border-b border-white"
-        class="w-full flex items-center ps-[1rem] gap-[1rem] white py-[1rem] transition-all  cursor-pointer hover:border-b-2 hover:border-white">
+        class="w-full flex items-center ps-[1rem] gap-[1rem] white py-[1rem] transition-all  cursor-pointer hover:border-b-2 hover:border-white"
+        *ngIf="isAdmin">
         <i class="pi pi-users"></i>
         Clientes
       </a>
@@ -47,12 +50,11 @@
         FAQ
       </p>
 
-      <p
-      (click)="logout()"
-      class="w-2/3 flex items-center hover:text-blue-500 ps-[1rem] gap-[1rem] py-[1rem] hover:bg-white transition-all rounded cursor-pointer absolute bottom-3 self-center ">
-      <i class="pi pi-sign-out" style="font-size: 2rem"></i>
-      Sair
-    </p>
+      <p (click)="logout()"
+        class="w-2/3 flex items-center hover:text-blue-500 ps-[1rem] gap-[1rem] py-[1rem] hover:bg-white transition-all rounded cursor-pointer absolute bottom-3 self-center ">
+        <i class="pi pi-sign-out" style="font-size: 2rem"></i>
+        Sair
+      </p>
     </div>
   </div>
   <div class="xl:col-span-10 md:col-span-9">

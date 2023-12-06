@@ -13,11 +13,13 @@ import { ShippingCompanyComponent } from './pages/shipping-company/shipping-comp
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { JwtAuthInterceptor } from './interceptor/jwt-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AcessoNegadoComponent } from './pages/acesso-negado/acesso-negado.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AcessoNegadoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MessageService } from 'primeng/api';
 import { ClientService } from 'src/app/services/clients.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -9,6 +10,8 @@ import { Product } from 'src/app/services/types/product';
 import { Request, Status } from 'src/app/services/types/request';
 import { Vehicle } from 'src/app/services/types/vehicle';
 import { VehicleService } from 'src/app/services/vehicle.service';
+import { ChangeStatusRequestDialogComponent } from './components/change-status-request-dialog/change-status-request-dialog.component';
+import { RequestsFormDialogComponent } from './components/requests-form-dialog/requests-form-dialog.component';
 
 @Component({
   selector: 'app-requests',
@@ -25,9 +28,10 @@ export class RequestsComponent implements OnInit {
   public showDialog = false;
   public form : FormGroup;
 
-  constructor(private requestService: RequestService, private message: MessageService, private fb: FormBuilder, private client: ClientService, private vehicle: VehicleService, private product: ProductService) {
+  constructor( public dialog: MatDialog, private requestService: RequestService, private message: MessageService, private fb: FormBuilder, private client: ClientService, private vehicle: VehicleService, private product: ProductService) {
     this.form = this.initForm();
    }
+
 
   ngOnInit(): void {
     console.log('Iniciando componente de solicitações');
@@ -36,6 +40,38 @@ export class RequestsComponent implements OnInit {
     this.getAllClients();
     this.getAllProducts();
 
+    this.loadRequests();
+  }
+
+  openNewRequestDialog(): void {
+    const dialogRef = this.dialog.open(RequestsFormDialogComponent, {
+      minWidth: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadRequests();
+    });
+  }
+
+  openChangestatusRequestDialog(request_id: number): void {
+    const dialogRef = this.dialog.open(ChangeStatusRequestDialogComponent, {
+      minWidth: '600px',
+      data: { request_id: request_id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getAllRequests();
+    });
+  }
+
+  loadRequests(): void {
+    this.requestService.getAll().subscribe(
+      (data) => {
+        this.requests = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar os pedidos:', error);
+        alert('Erro ao carregar os pedidos. Por favor, tente novamente.');
+      }
+    );
   }
 
   getStatusName(status: Status): string {

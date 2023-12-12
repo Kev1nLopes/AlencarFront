@@ -1,0 +1,48 @@
+<div>
+  <h1 mat-dialog-title class="title">Novo pedido</h1>
+  <div mat-dialog-content class="modal-container">
+    <div class="modal-content">
+      <form [formGroup]="requestForm" class="form-container">
+
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <select matNativeControl formControlName="client_id" required>
+            <option *ngFor="let client of clients" [value]="client.id">
+              {{ client.name }}
+            </option>
+          </select>
+        </mat-form-field>
+
+
+        <mat-form-field>
+          <mat-label>Produto</mat-label>
+          <select matNativeControl formControlName="product_id" required>
+            <option *ngFor="let product of produtos" [value]="product.id">
+              {{ product.name }}
+            </option>
+          </select>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+          <mat-label>Quantidade</mat-label>
+          <input matInput formControlName="amount">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Veículos</mat-label>
+          <select matNativeControl formControlName="vehicle_id" required>
+            <option *ngFor="let vehicle of veiculos" [value]="vehicle.id">
+              {{ vehicle.plateNumber }}
+            </option>
+          </select>
+        </mat-form-field>
+
+
+      </form>
+    </div>
+  </div>
+  <div mat-dialog-actions class="modal-actions">
+    <button class="bg-gray-500 text-white py-2 px-4 rounded" (click)="onClose()">Cancelar</button>
+    <button class="bg-blue-500 text-white py-2 px-4 rounded" (click)="createRequest()">Salvar</button>
+  </div>
+</div>

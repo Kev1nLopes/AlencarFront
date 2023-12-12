@@ -13,7 +13,12 @@ import { ShippingCompanyComponent } from './pages/shipping-company/shipping-comp
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { JwtAuthInterceptor } from './interceptor/jwt-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -24,10 +29,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
-  
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatButtonModule
+
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtAuthInterceptor, multi: true} //Multi significa que podemos ter multiplos objetos utilizando esse jwt
+    { provide: HTTP_INTERCEPTORS, useClass: JwtAuthInterceptor, multi: true } //Multi significa que podemos ter multiplos objetos utilizando esse jwt
   ],
   bootstrap: [AppComponent]
 })

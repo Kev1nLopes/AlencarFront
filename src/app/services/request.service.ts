@@ -31,8 +31,8 @@ export class RequestService {
     return this.http.delete(`${Environment.baseUrl}/request/${id}`, { headers: this.headers });
   }
 
-  update(request: any): Observable<any> {
-    return this.http.put(`${Environment.baseUrl}/request`, request, { headers: this.headers });
+  update(status: string, request_id: number): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/request/${request_id}`, status, { headers: this.headers });
   }
 
   create(request: any): Observable<any> {

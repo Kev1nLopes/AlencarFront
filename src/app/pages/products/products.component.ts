@@ -78,7 +78,7 @@ export class ProductsComponent implements OnInit {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(3)]],
-      active: true
+      active: true,
     })
   }
 

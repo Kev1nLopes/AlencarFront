@@ -1,7 +1,7 @@
 <div class="w-3/3 p-4">
     <div class="flex justify-between">
         <h1 class="text-2xl text-gray-800 font-bold">Listagem de Produtos</h1>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded">Novo produto</button>
+        <button (click)="showDialog = true" class="bg-blue-500 text-white py-2 px-4 rounded">Novo produto</button>
     </div>
 
     <table class="w-full mt-10 bg-gray-100 rounded-xl drop-shadow-lg">
@@ -23,4 +23,25 @@
             </tr>
         </tbody>
     </table>
+    <p-toast></p-toast>
+
+    <p-dialog header="Cadastro de produto" [modal]="true" [draggable]="false"  [(visible)]="showDialog">
+        <form [formGroup]="form" (ngSubmit)="createNewClient()">
+            <div class="flex flex-col gap-2 py-5 w-[30vw] min-w-[300px]">
+                <label htmlFor="username">Nome</label>
+                <input pInputText id="username" class="h-[48px] indent-3" aria-describedby="username-help" formControlName="name" />
+                
+                <label htmlFor="description">Descriçãos</label>
+                <input pInputText id="description" class="h-[48px] indent-3" aria-describedby="description-of-product" formControlName="description" />
+            </div>
+            
+            <div class="flex justify-end gap-3">
+                <p-button (onClick)="showDialog = false" label="Voltar" class="bg-gray-400 p-3 text-white  rounded ml-auto"></p-button>
+                <p-button [disabled]="form.invalid" label="Salvar" type="submit" class="bg-blue-500 p-3 text-white rounded"></p-button>
+                
+            </div>
+
+
+        </form>
+    </p-dialog>
 </div>

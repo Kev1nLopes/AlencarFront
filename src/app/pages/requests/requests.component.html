@@ -35,4 +35,25 @@
             </tr>
         </tbody>
     </table>
+    <p-toast></p-toast>
+
+    <p-dialog header="Cadastro de Requisição" [modal]="true" [draggable]="false"  [(visible)]="showDialog">
+        <form [formGroup]="form" (ngSubmit)="createNewRequest()">
+            <div class="flex flex-col gap-2 py-5 w-[30vw] min-w-[300px]">
+                <label htmlFor="name">Valor</label>
+                <input pInputText id="name" class="h-[48px] indent-3" aria-describedby="plate-help" formControlName="amount" />
+                <p-dropdown formControlName="client" [options]="clients"  optionLabel="name" placeholder="Selecione o cliente"></p-dropdown>
+                <p-dropdown formControlName="product" [options]="products"  optionLabel="name" placeholder="Selecione o produto"></p-dropdown>
+                <p-dropdown formControlName="vehicle" [options]="vehicles"  optionLabel="plateNumber" placeholder="Selecione o veiculo"></p-dropdown>
+            </div>
+
+            <div class="flex justify-end gap-3">
+                <p-button (onClick)="showDialog = false" label="Voltar" class="bg-gray-400 p-3 text-white  rounded ml-auto"></p-button>
+                <p-button [disabled]="form.invalid" label="Salvar" type="submit" class="bg-blue-500 p-3 text-white rounded"></p-button>
+                
+            </div>
+
+
+        </form>
+    </p-dialog>
 </div>

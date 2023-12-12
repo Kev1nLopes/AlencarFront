@@ -25,7 +25,7 @@ export class LoginComponent {
         const user: User = data as User;
         sessionStorage.setItem('currentUser', JSON.stringify(user));
         sessionStorage.setItem('token', JSON.stringify(user.token));
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/clientes']);
       },
       error: (err) => {
         console.log(err);
@@ -38,8 +38,8 @@ export class LoginComponent {
 
   private initForm() {
     return this.fb.group({
-      username: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(100)]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]]
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      password: ['', [Validators.required, Validators.maxLength(100)]]
     });
   }
 }

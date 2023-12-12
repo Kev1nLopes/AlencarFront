@@ -26,13 +26,10 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatInputModule,
     MatNativeDateModule,
     MatAutocompleteModule,
     MatButtonModule

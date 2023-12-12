@@ -31,8 +31,8 @@ export class CompanyService {
     return this.http.delete(`${Environment.baseUrl}/shipping-company/${id}`, { headers: this.headers });
   }
 
-  desactivate(id: number, shipping: any): Observable<any> {
-    return this.http.put(`${Environment.baseUrl}/shipping-company/${id}`, shipping, { headers: this.headers });
+  desactivate(shipping: any): Observable<any> {
+    return this.http.put(`${Environment.baseUrl}/shipping-company/${shipping.id}`, shipping, { headers: this.headers });
   }
 
   update(shipping: any): Observable<any> {
@@ -40,6 +40,6 @@ export class CompanyService {
   }
 
   create(shipping: any): Observable<any> {
-    return this.http.post(`${Environment.baseUrl}/shipping-company`, shipping, { headers: this.headers });
+    return this.http.post(`${Environment.baseUrl}/shipping-company/new`, shipping, { headers: this.headers });
   }
 }

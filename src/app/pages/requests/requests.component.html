@@ -4,6 +4,16 @@
         <button class="bg-blue-500 text-white py-2 px-4 rounded" (click)="openNewRequestDialog()">Nova Pedido</button>
     </div>
 
+    <div class="flex mb-4 mt-10">
+        <label for="statusFilter">Filtrar por Status:</label>
+        <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="applyStatusFilter()">
+            <option value="null">Todos</option>
+            <option *ngFor="let status of allStatus" [value]="status">
+                {{ getStatusName(status) }}
+            </option>
+        </select>
+    </div>
+
     <table class="w-full mt-10 bg-gray-100 rounded-xl drop-shadow-lg">
         <thead>
             <tr class="bg-blue-500 text-white">
@@ -17,7 +27,7 @@
         </thead>
         <tbody>
             <!-- Loop through requests and display each row -->
-            <tr class="border-b" *ngFor="let request of requests">
+            <tr class="border-b" *ngFor="let request of filteredRequests">
                 <td class="py-2 px-4 text-left">{{ request.id }}</td>
                 <td class="py-2 px-4 col-span-8 text-left">{{ request.client.name }}</td>
                 <td class="py-2 px-4 col-span-8 text-left">{{ request.product.name }}</td>
@@ -37,20 +47,26 @@
     </table>
     <p-toast></p-toast>
 
-    <p-dialog header="Cadastro de Requisição" [modal]="true" [draggable]="false"  [(visible)]="showDialog">
+    <p-dialog header="Cadastro de Requisição" [modal]="true" [draggable]="false" [(visible)]="showDialog">
         <form [formGroup]="form" (ngSubmit)="createNewRequest()">
             <div class="flex flex-col gap-2 py-5 w-[30vw] min-w-[300px]">
                 <label htmlFor="name">Valor</label>
-                <input pInputText id="name" class="h-[48px] indent-3" aria-describedby="plate-help" formControlName="amount" />
-                <p-dropdown formControlName="client" [options]="clients"  optionLabel="name" placeholder="Selecione o cliente"></p-dropdown>
-                <p-dropdown formControlName="product" [options]="products"  optionLabel="name" placeholder="Selecione o produto"></p-dropdown>
-                <p-dropdown formControlName="vehicle" [options]="vehicles"  optionLabel="plateNumber" placeholder="Selecione o veiculo"></p-dropdown>
+                <input pInputText id="name" class="h-[48px] indent-3" aria-describedby="plate-help"
+                    formControlName="amount" />
+                <p-dropdown formControlName="client" [options]="clients" optionLabel="name"
+                    placeholder="Selecione o cliente"></p-dropdown>
+                <p-dropdown formControlName="product" [options]="products" optionLabel="name"
+                    placeholder="Selecione o produto"></p-dropdown>
+                <p-dropdown formControlName="vehicle" [options]="vehicles" optionLabel="plateNumber"
+                    placeholder="Selecione o veiculo"></p-dropdown>
             </div>
 
             <div class="flex justify-end gap-3">
-                <p-button (onClick)="showDialog = false" label="Voltar" class="bg-gray-400 p-3 text-white  rounded ml-auto"></p-button>
-                <p-button [disabled]="form.invalid" label="Salvar" type="submit" class="bg-blue-500 p-3 text-white rounded"></p-button>
-                
+                <p-button (onClick)="showDialog = false" label="Voltar"
+                    class="bg-gray-400 p-3 text-white  rounded ml-auto"></p-button>
+                <p-button [disabled]="form.invalid" label="Salvar" type="submit"
+                    class="bg-blue-500 p-3 text-white rounded"></p-button>
+
             </div>
 
 

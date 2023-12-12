@@ -26,11 +26,22 @@ export class RequestsComponent implements OnInit {
   public vehicles: Vehicle[] = [];
   public products: Product[] = [];
   public showDialog = false;
-  public form : FormGroup;
+  public form: FormGroup;
+  public selectedStatus: Status | null = null;
+  public filteredRequests: Request[] = [];
+  public allStatus: Status[] = [
+    Status.WAITING_FOR_PRODUCTION,
+    Status.IN_PRODUCTION,
+    Status.PRODUCED,
+    Status.WAITING_VEHICLE,
+    Status.IN_TRANSIT,
+    Status.DELIVERED,
+    Status.CANCELLED
+  ];
 
-  constructor( public dialog: MatDialog, private requestService: RequestService, private message: MessageService, private fb: FormBuilder, private client: ClientService, private vehicle: VehicleService, private product: ProductService) {
+  constructor(public dialog: MatDialog, private requestService: RequestService, private message: MessageService, private fb: FormBuilder, private client: ClientService, private vehicle: VehicleService, private product: ProductService) {
     this.form = this.initForm();
-   }
+  }
 
 
   ngOnInit(): void {
@@ -116,7 +127,7 @@ export class RequestsComponent implements OnInit {
     }
   }
 
-  getAllRequests(){
+  getAllRequests() {
     this.requestService.getAll().subscribe(
       {
         next: (data) => {
@@ -124,33 +135,33 @@ export class RequestsComponent implements OnInit {
           console.log(this.requests)
         },
         error: (error) => {
-          this.message.add({severity: 'error', summary: 'Ops! Ocorreu um erro', detail: 'Nao foi possivel desativar o veiculo, verifique os dados ou entre em contato com o suporte'});
+          this.message.add({ severity: 'error', summary: 'Ops! Ocorreu um erro', detail: 'Nao foi possivel desativar o veiculo, verifique os dados ou entre em contato com o suporte' });
         }
       }
 
     );
   }
-  getAllVehicles(){
+  getAllVehicles() {
     this.vehicle.getAll().subscribe(
       {
         next: (data) => {
           this.vehicles = data;
         },
         error: (error) => {
-     
+
         }
       }
 
     );
   }
-  getAllProducts(){
+  getAllProducts() {
     this.product.getAll().subscribe(
       {
         next: (data) => {
           this.products = data;
         },
         error: (error) => {
-          
+
         }
       }
 
@@ -158,21 +169,21 @@ export class RequestsComponent implements OnInit {
 
   }
 
-  getAllClients(){
+  getAllClients() {
     this.client.getAll().subscribe(
       {
         next: (data) => {
           this.clients = data;
         },
         error: (error) => {
-         
+
         }
       });
 
   }
 
-  createNewRequest(){
-    try{ 
+  createNewRequest() {
+    try {
       let value = this.form.getRawValue();
       console.log(value);
       this.requestService.create({
@@ -181,23 +192,23 @@ export class RequestsComponent implements OnInit {
         product_id: value.product.id,
         vehicle_id: value.vehicle.id,
       }).subscribe(value => {
-        this.message.add({severity: 'success', summary: 'Transportadora cadastrada com sucesso'});
+        this.message.add({ severity: 'success', summary: 'Transportadora cadastrada com sucesso' });
         this.getAllRequests();
       });
-    }catch(err){
+    } catch (err) {
       console.log(err);
-      this.message.add({severity: 'error', summary: 'Ops! Ocorreu um erro', detail: 'Nao foi possivel cadastrar a Transportadora, verifique os dados ou entre em contato com o suporte'});
+      this.message.add({ severity: 'error', summary: 'Ops! Ocorreu um erro', detail: 'Nao foi possivel cadastrar a Transportadora, verifique os dados ou entre em contato com o suporte' });
 
-    }finally{
+    } finally {
       this.form.reset();
       this.showDialog = false;
     }
-    
+
   }
 
   // desactiveCompany(product: any){
   //   try{
-      
+
   //     this.requestService.desactivate(product).subscribe(value => {
   //       this.message.add({severity: 'success', summary: 'Veiculo desativado com sucesso'});
   //       this.getAllVehicle();
@@ -211,8 +222,18 @@ export class RequestsComponent implements OnInit {
   //   }
   // }
 
+  applyStatusFilter() {
+    if (this.selectedStatus) {
+      this.filteredRequests = this.requests.filter(request => request.status === this.selectedStatus);
+    } else {
+      this.filteredRequests = this.requests;
+    }
+  }
 
-  initForm():FormGroup{
+
+
+
+  initForm(): FormGroup {
     return this.fb.group({
       amount: [0, [Validators.required]],
       client: ['', [Validators.required]],
